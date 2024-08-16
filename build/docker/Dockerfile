@@ -13,7 +13,11 @@ RUN apk update && \
 WORKDIR /go/src
 
 # Clone repo
-RUN git clone https://github.com/bryan-nice/jira-issue-creation.git
+# RUN git clone https://github.com/bryan-nice/jira-issue-creation.git
+
+# Clone your forked repo
+RUN git clone https://github.com/liorl-cloudride/jira-issue-creation.git
+
 
 # Checkout to target branch and if not master, then locally test
 # merging master into branch.
