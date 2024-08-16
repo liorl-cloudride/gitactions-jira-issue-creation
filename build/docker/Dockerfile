@@ -16,13 +16,13 @@ WORKDIR /go/src
 # RUN git clone https://github.com/bryan-nice/jira-issue-creation.git
 
 # Clone your forked repo
-RUN git clone https://github.com/liorl-cloudride/gitactions-jira-issue-creation.git
+RUN git clone https://github.com/liorl-cloudride/jira-issue-creation.git
 
 
 # Checkout to target branch and if not master, then locally test
 # merging master into branch.
-# WORKDIR /go/src/jira-issue-creation
-WORKDIR /go/src/gitactions-jira-issue-creation
+WORKDIR /go/src/jira-issue-creation
+# WORKDIR /go/src/gitactions-jira-issue-creation
 
 
 # Building go app
@@ -38,13 +38,13 @@ LABEL "com.github.actions.color"="purple"
 LABEL "com.github.actions.name"="Jira Issue Creation"
 LABEL "com.github.actions.description"="Create a Jira Issue"
 
-# COPY --from=BUILD /go/bin/jira-issue-creation /usr/bin
-# COPY --from=BUILD /go/src/jira-issue-creation/LICENSE /
-# COPY --from=BUILD /go/src/jira-issue-creation/README.md /
-
 COPY --from=BUILD /go/bin/jira-issue-creation /usr/bin
-COPY --from=BUILD /go/src/gitactions-jira-issue-creation/LICENSE /
-COPY --from=BUILD /go/src/gitactions-jira-issue-creation/README.md /
+COPY --from=BUILD /go/src/jira-issue-creation/LICENSE /
+COPY --from=BUILD /go/src/jira-issue-creation/README.md /
+
+# COPY --from=BUILD /go/bin/jira-issue-creation /usr/bin
+# COPY --from=BUILD /go/src/gitactions-jira-issue-creation/LICENSE /
+# COPY --from=BUILD /go/src/gitactions-jira-issue-creation/README.md /
 
 
 RUN mkdir -p /github/workspace
