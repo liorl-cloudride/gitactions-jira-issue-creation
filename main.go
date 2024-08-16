@@ -89,5 +89,10 @@ func main() {
 			result = fmt.Sprintf("%sbrowse/%s", jiraAccountUrl, string(issue.Key))
 		}
 	}
-	fmt.Printf(fmt.Sprintf("::set-output name=jira_issue_url::%s", result))
+	// fmt.Printf(fmt.Sprintf("::set-output name=jira_issue_url::%s", result))
+	output := fmt.Sprintf("jira_issue_url=%s\n", result)
+	envFile := os.Getenv("GITHUB_ENV")
+	if err := os.WriteFile(envFile, []byte(output), 0644); err != nil {
+		log.Fatalf("Failed to write jira_issue_url to GITHUB_ENV: %v", err)
+	}
 }
